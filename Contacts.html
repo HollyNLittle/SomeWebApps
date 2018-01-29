@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Filterable List</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="center-align">
+            Contacts
+        </h1>
+        <input type="text" id="filterInput" placeholder="Search names...">
+        <ul id="names" class="collection with-header">
+            <li class="collection-header">
+                <h5>A</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Anna</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Abe</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Alex</a>
+            <li class="collection-header">
+                <h5>B</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Brad</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Brenda</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Brian</a>
+            </li>
+            <li class="collection-header">
+                <h5>C</h5>
+            </li>
+            <li class="collection-item">
+                <a href="#">Carrie</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Charles</a>
+            </li>
+            <li class="collection-item">
+                <a href="#">Catherine</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <script>
+        //get the input element
+        let filterInput = document.getElementById('filterInput');
+        //add the event listener to the input element on keyup call function called filterNames()
+        filterInput.addEventListener('keyup', filterNames);
+
+        function filterNames() {
+            //get the value of what was keyed in
+            let filterValue = document.getElementById('filterInput').value.toUpperCase();
+
+            //get names list
+            let ul = document.getElementById('names');
+            //get items in list .querySelectorAll() grabs all of the collection-items creates array
+            let li = ul.querySelectorAll('li.collection-item');
+            //loop through collection-items array
+            for (let i = 0; i < li.length; i++) {
+                //getting all the names by the tag which is a
+                let a = li[i].getElementsByTagName('a')[0];
+                //check to see if what is in a matches, item in current loop of list
+                if (a.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+                    li[i].style.display = '';
+                }
+                else {
+                    li[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
